@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Assessment Recommendation System</h1>
+
+        <!-- Form to get user input (query) -->
+        <form action="/" method="POST">
+            <label for="query">Enter your query:</label>
+            <input type="text" id="query" name="query" required>
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <!-- Display recommended assessments if they exist -->
+        {% if recommendations %}
+        <div class="recommendations">
+            <h2>Recommended Assessments:</h2>
+            <ul>
+                {% for assessment in recommendations %}
+                <li>{{ assessment }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- Display recommended URLs if they exist -->
+        <div class="urls">
+            <h2>Recommended URLs:</h2>
+            <ul>
+                {% for url in urls %}
+                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Assessment Recommendation System</h1>
+        <form action="/recommend" method="POST">
+            <label for="category">Choose a category:</label>
+            <select name="category" id="category" required>
+                <option value="Math">Math</option>
+                <option value="Science">Science</option>
+                <option value="English">English</option>
+            </select>
+            <br><br>
+            <button type="submit">Get Recommendation</button>
+        </form>
+    </div>
+</body>
+</html> -->
