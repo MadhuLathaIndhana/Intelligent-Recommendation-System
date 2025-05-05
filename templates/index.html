@@ -3,44 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assessment Recommendation</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Assessment Recommendations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #353535;
+            color: white;
+            font-weight: bold;
+        }
+        .card-body {
+            background-color: #f1f1f1;
+        }
+        .card-footer {
+            background-color: #ffffff;
+            text-align: center;
+        }
+        .recommendation-item {
+            margin-bottom: 10px;
+        }
+        .btn-custom {
+            background-color: #468529;
+            color: white;
+            text-align: center;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .form-control {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Assessment Recommendation System</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="query">Enter your query:</label>
+                <input type="text" class="form-control" id="query" name="query" placeholder="Enter your search query" required>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Get Recommendations</button>
+        </form>
+
+        {% if recommendations %}
+        <h2 class="mt-5">Top Recommendations:</h2>
+        <div class="list-group">
+            {% for recommendation in recommendations %}
+            <div class="card recommendation-item">
+                <div class="card-header">{{ recommendation.assessment }}</div>
+                <div class="card-body">
+                    <p><strong>URL:</strong> <a href="{{ recommendation.url }}" target="_blank">{{ recommendation.url }}</a></p>
+                    <p><strong>Remote Testing Support:</strong> {{ recommendation.remote_testing }}</p>
+                    <p><strong>Adaptive/IRT Support:</strong> {{ recommendation.adaptive_support }}</p>
+                    <p><strong>Duration:</strong> {{ recommendation.duration }}</p>
+                    <p><strong>Test Type:</strong> {{ recommendation.test_type }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ recommendation.url }}" class="btn btn-custom" target="_blank">View Assessment</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">
+            Please enter a query to get recommendations.
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
         <h1>Assessment Recommendation System</h1>
-
-        <!-- Form to get user input (query) -->
-        <form action="/" method="POST">
-            <label for="query">Enter your query:</label>
-            <input type="text" id="query" name="query" required>
-            <button type="submit">Get Recommendations</button>
+        <form method="POST">
+            <label for="query">Enter your query:</label><br>
+            <input type="text" id="query" name="query" required><br><br>
+            <input type="submit" value="Get Recommendations">
         </form>
 
-        <!-- Display recommended assessments if they exist -->
         {% if recommendations %}
-        <div class="recommendations">
-            <h2>Recommended Assessments:</h2>
-            <ul>
-                {% for assessment in recommendations %}
-                <li>{{ assessment }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        
-        <!-- Display recommended URLs if they exist -->
-        <div class="urls">
-            <h2>Recommended URLs:</h2>
-            <ul>
-                {% for url in urls %}
-                <li><a href="{{ url }}" target="_blank">{{ url }}</a></li>
-                {% endfor %}
-            </ul>
-        </div>
+        <h2>Recommended Assessments:</h2>
+        <ul>
+            {% for rec in recommendations %}
+            <li>
+                <a href="{{ rec.url }}" target="_blank">{{ rec.assessment }}</a><br>
+                Remote Testing Support: {{ rec.remote_testing }}<br>
+                Adaptive/IRT Support: {{ rec.adaptive_support }}<br>
+                Duration: {{ rec.duration }}<br>
+                Test Type: {{ rec.test_type }}<br>
+            </li>
+            {% endfor %}
+        </ul>
         {% endif %}
     </div>
 </body>
 </html>
+
+
+
+ -->
+
+
 
 
 
